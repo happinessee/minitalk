@@ -6,7 +6,18 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/16 13:10:31 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/16 13:47:24 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk.h"
+
+int	main(int argc, char **argv)
+{
+	if (!(argc == 3))
+	{
+		/* pid 가 아니라면, */
+		/* 보내야하는 문자열이 존재하지 않는다면 */
+	}
+	return (0);
+}

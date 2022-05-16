@@ -6,7 +6,17 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:37 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/16 13:10:41 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/16 14:33:06 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minitalk.h"
+
+#include <unistd.h>
+#include <sys/types.h>
+
+int	main()
+{
+	put_pid();
+	return (0);
+}
