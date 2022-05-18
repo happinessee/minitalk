@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/17 19:09:47 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:58:22 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ void	make_bit(int tmp, int pid)
 	{
 		if ((tmp & (1 << cnt)) >> cnt)
 		{
-			ft_putchar('1');
 			kill(pid, SIGUSR1);
 		}
 		else
 		{
-			ft_putchar('0');
 			kill(pid, SIGUSR2);
 		}
 		usleep(100);
@@ -47,8 +45,12 @@ int	main(int argc, char **argv)
 		ft_putstr("Usage : ./client [PID] [texts]\n");
 	else
 	{
-		tmp = (int)argv[2][idx];
-		make_bit(tmp, ft_atoi(argv[1]));
+		while (argv[2][idx])
+		{
+			tmp = (int)argv[2][idx];
+			make_bit(tmp, ft_atoi(argv[1]));
+			idx++;
+		}
 	}
 	return (0);
 }
