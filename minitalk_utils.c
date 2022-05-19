@@ -6,11 +6,13 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:51:26 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/17 12:29:33 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/18 16:05:02 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+#include <stdlib.h>
 
 static int	ft_isdigit(int c)
 {
@@ -48,4 +50,10 @@ int	ft_atoi(const char *str)
 		idx++;
 	}
 	return (result * sign);
+}
+
+void	error(char *error_message)
+{
+	ft_putstr(error_message);
+	exit(1);
 }

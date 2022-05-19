@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/18 13:24:29 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/18 20:13:01 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void	error(char *error_message)
+void	check_connection_handler(int signo, siginfo_t *info, void *context)
 {
-	ft_putstr(error_message);
-	exit(1);
+	(void)info;
+	(void)context;
+	if (signo == SIGUSR1)
+	{
+		ft_putstr("The connection to the server was successful.\n");
+	}
 }
 
 void	make_bit(int tmp, int pid)
@@ -46,6 +50,8 @@ int	main(int argc, char **argv)
 	int	idx;
 
 	idx = 0;
+	t_client.sa_sigaction = handler;
+	t_client.sa_flags = SA_SIGINFO;
 	if (!(argc == 3))
 		error("Usage : ./client [PID] [texts]\n");
 	if (ft_atoi(argv[1]) < 100 && ft_atoi(argv[1]) > 99998)
@@ -56,6 +62,7 @@ int	main(int argc, char **argv)
 	{
 		tmp = (int)argv[2][idx];
 		make_bit(tmp, ft_atoi(argv[1]));
+		usleep(100);
 		idx++;
 	}
 	return (0);
