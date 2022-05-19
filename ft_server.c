@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:37 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/18 20:05:17 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/20 06:07:57 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	check_handler(int signo, siginfo_t *info, void *context)
 int	main()
 {
 	put_pid();
-	t_server.sa_sigaction = handler;
+	t_server.sa_sigaction = check_handler;
 	t_server.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &t_server, NULL) != 0)
 		error("Sigactioin Error : Please retry.\n");
