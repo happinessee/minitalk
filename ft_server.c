@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:37 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/24 16:45:00 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:41:16 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ void	receive_handler(int signo, siginfo_t *info, void *context)
 	static unsigned char	tmp;
 	static int				idx;
 	static int				bit_cnt;
-	//static int				pre_pid;
+	static int				pre_pid;
 	
-	//if (pre_pid == 0)
-	//	pre_pid = info->si_pid;
-	//if (!(info->si_pid == pre_pid))
-	//{
-	//	ft_putnbr(info->si_pid);
-	//	error("it is not client's PID\n");
-	//}
-	(void)info;
+	if (pre_pid == 0)
+		pre_pid = info->si_pid;
+	if (!(info->si_pid == pre_pid))
+	{
+		ft_putnbr(info->si_pid);
+		error("it is not client's PID\n");
+	}
+	// (void)info;
 	(void)context;
 	gather_bit(signo, &tmp);
 	idx++;
@@ -51,6 +51,10 @@ void	receive_handler(int signo, siginfo_t *info, void *context)
 	{
 		ft_putchar(tmp);
 		idx = 0;
+	}
+	if (tmp == 127)
+	{
+		pre_pid = 0;
 	}
 }
 

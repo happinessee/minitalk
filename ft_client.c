@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/24 16:48:44 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:40:29 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int argc, char **argv)
 		make_bit(argv[2][idx], ft_atoi(argv[1]));
 		usleep(300);
 	}
+	make_bit(127, ft_atoi(argv[1]));
 	sigaction(SIGUSR1, &t_client, NULL);
 	sigaction(SIGUSR2, &t_client, NULL);
 	return (0);
