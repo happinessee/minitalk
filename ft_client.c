@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/18 20:13:01 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:48:44 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	check_connection_handler(int signo, siginfo_t *info, void *context)
 	if (signo == SIGUSR1)
 	{
 		ft_putstr("The connection to the server was successful.\n");
+	}
+	else
+	{
+		error("The connection with the server was not terminated successfully.");
 	}
 }
 
@@ -46,24 +50,21 @@ void	make_bit(int tmp, int pid)
 
 int	main(int argc, char **argv)
 {
-	int	tmp;
 	int	idx;
 
-	idx = 0;
-	t_client.sa_sigaction = handler;
+	idx = -1;
+	t_client.sa_sigaction = check_connection_handler;
 	t_client.sa_flags = SA_SIGINFO;
 	if (!(argc == 3))
 		error("Usage : ./client [PID] [texts]\n");
 	if (ft_atoi(argv[1]) < 100 && ft_atoi(argv[1]) > 99998)
 		error("pid must be 100 < pid < 99999\n");
+	while (argv[2][++idx])
+	{
+		make_bit(argv[2][idx], ft_atoi(argv[1]));
+		usleep(300);
+	}
 	sigaction(SIGUSR1, &t_client, NULL);
 	sigaction(SIGUSR2, &t_client, NULL);
-	while (argv[2][idx])
-	{
-		tmp = (int)argv[2][idx];
-		make_bit(tmp, ft_atoi(argv[1]));
-		usleep(100);
-		idx++;
-	}
 	return (0);
 }
