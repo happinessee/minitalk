@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:37 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/25 16:17:39 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:20:37 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,11 @@ void	receive_handler(int signo, siginfo_t *info, void *context)
 	static int				idx;
 	static int				bit_cnt;
 	static int				pre_pid;
-	
+
 	if (pre_pid == 0)
 		pre_pid = info->si_pid;
 	if (!(info->si_pid == pre_pid))
-	{
-		ft_putnbr(info->si_pid);
 		error("it is not client's PID\n");
-	}
-	// (void)info;
 	(void)context;
 	gather_bit(signo, &tmp);
 	idx++;
@@ -51,6 +47,8 @@ void	receive_handler(int signo, siginfo_t *info, void *context)
 
 int	main(void)
 {
+	struct sigaction	t_server;
+
 	put_pid();
 	t_server.sa_sigaction = receive_handler;
 	t_server.sa_flags = SA_SIGINFO;

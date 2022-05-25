@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 14:17:36 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/16 16:24:19 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/25 16:22:27 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <unistd.h>
 #include <stddef.h>
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void    ft_putnbr(int n)
+void	ft_putnbr(int n)
 {
-	long long       num;
+	long long	num;
 
 	num = (long long)n;
 	if (num < 0)
@@ -50,7 +50,7 @@ void	ft_putstr(char *s)
 	write(1, s, ft_strlen(s));
 }
 
-void	put_pid()
+void	put_pid(void)
 {
 	ft_putstr("Server's PID : [");
 	ft_putnbr(getpid());

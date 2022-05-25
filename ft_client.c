@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/25 16:16:43 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/25 17:19:14 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int	bit_cnt;
+int	g_bit_cnt;
 
 void	check_connection_handler(int signo, siginfo_t *info, void *context)
 {
@@ -29,16 +29,18 @@ void	check_connection_handler(int signo, siginfo_t *info, void *context)
 	if (idx == 32)
 	{
 		ft_putstr("bits send / receive : ");
-		ft_putnbr(bit_cnt);
+		ft_putnbr(g_bit_cnt);
 		ft_putstr(" / ");
 		ft_putnbr(tmp);
 		ft_putstr("\n");
+		exit(0);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	int	idx;
+	int					idx;
+	struct sigaction	t_client;
 
 	idx = -1;
 	t_client.sa_sigaction = check_connection_handler;
@@ -49,12 +51,12 @@ int	main(int argc, char **argv)
 		error("Usage : ./client [PID] [texts]\n");
 	if (ft_atoi(argv[1]) < 100 && ft_atoi(argv[1]) > 99998)
 		error("pid must be 100 < pid < 99999\n");
-	bit_cnt = 8;
+	g_bit_cnt = 8;
 	while (argv[2][++idx])
 	{
 		make_bit(argv[2][idx], ft_atoi(argv[1]), 8);
 		usleep(300);
-		bit_cnt += 8;
+		g_bit_cnt += 8;
 	}
 	make_bit(127, ft_atoi(argv[1]), 8);
 	while (1)
