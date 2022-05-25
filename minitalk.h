@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:18 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/18 14:16:09 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/25 15:42:59 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ struct sigaction	t_server;
 struct sigaction	t_client;
 
 /* server */
-
+void	gather_bit(int signo, int *tmp);
 
 /* client */
-
+void	make_bit(int tmp, int pid, int cnt);
 
 /* utils */
 void	ft_putchar(char c);

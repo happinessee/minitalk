@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:37 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/24 19:41:16 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/25 16:17:39 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,9 @@
 #include <signal.h>
 #include <stdlib.h>
 
-void	gather_bit(int signo, unsigned char *tmp)
-{
-	if (signo == SIGUSR1)
-	{
-		*tmp = (*tmp << 1) + 1;
-	}
-	else
-	{
-		*tmp = (*tmp << 1);
-	}
-}
-
 void	receive_handler(int signo, siginfo_t *info, void *context)
 {
-	static unsigned char	tmp;
+	static int				tmp;
 	static int				idx;
 	static int				bit_cnt;
 	static int				pre_pid;
@@ -49,12 +37,15 @@ void	receive_handler(int signo, siginfo_t *info, void *context)
 	bit_cnt++;
 	if (idx == 8)
 	{
+		if (tmp == 127)
+		{
+			pre_pid = 0;
+			make_bit(bit_cnt, info->si_pid, 32);
+			bit_cnt = 0;
+		}
 		ft_putchar(tmp);
 		idx = 0;
-	}
-	if (tmp == 127)
-	{
-		pre_pid = 0;
+		tmp = 0;
 	}
 }
 
