@@ -6,14 +6,12 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:18 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/25 17:18:33 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/26 12:51:11 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
-
-# include <signal.h>
 
 /* server */
 void	gather_bit(int signo, int *tmp);
