@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/26 12:50:25 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/26 13:27:07 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <signal.h>
 
 int	g_bit_cnt;
 
