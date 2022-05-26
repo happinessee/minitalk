@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:31 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/26 13:27:07 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:34:29 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ int	main(int argc, char **argv)
 	idx = -1;
 	t_client.sa_sigaction = check_connection_handler;
 	t_client.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &t_client, NULL);
-	sigaction(SIGUSR2, &t_client, NULL);
+	if (sigaction(SIGUSR1, &t_client, NULL) != 0)
+		error("Sigactioin Error : Please retry.\n");
+	if (sigaction(SIGUSR2, &t_client, NULL) != 0)
+		error("Sigactioin Error : Please retry.\n");
 	if (!(argc == 3))
 		error("Usage : ./client [PID] [texts]\n");
 	if (ft_atoi(argv[1]) < 100 && ft_atoi(argv[1]) > 99998)

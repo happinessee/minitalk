@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:10:37 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/25 17:20:37 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:33:49 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(void)
 	t_server.sa_sigaction = receive_handler;
 	t_server.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &t_server, NULL) != 0)
-		error("Sigactioin Error : Please retry.\n");
+		error("Sigaction Error : Please retry.\n");
 	if (sigaction(SIGUSR2, &t_server, NULL) != 0)
 		error("Sigaction Error : Please retry.\n");
 	while (1)

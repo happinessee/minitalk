@@ -6,7 +6,7 @@
 /*   By: hyojeong <hyojeong@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 15:48:12 by hyojeong          #+#    #+#             */
-/*   Updated: 2022/05/26 12:50:19 by hyojeong         ###   ########.fr       */
+/*   Updated: 2022/05/26 17:35:34 by hyojeong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	make_bit(int tmp, int pid, int cnt)
 		{
 			kill(pid, SIGUSR2);
 		}
-		usleep(100);
+		usleep(250);
 	}
 }
